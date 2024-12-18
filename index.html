@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RakunGPT Whitelist Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .bot {
+            color: #4CAF50;
+        }
+        .user {
+            color: #333;
+        }
+        .message img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .input-container {
+            display: flex;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            <div class="message bot">
+                <p>Hello! I am RakunGPT. Ask me how to get on the whitelist, or inquire about raccoons!</p>
+                <img src="https://pbs.twimg.com/profile_banners/1836407404629479424/1733693089/1500x500" alt="Raccoon Banner">
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const ideas = [
+            "Create high-quality fan art for the raccoon collection and share it on social media.",
+            "Write a creative story or poem involving cyberpunk raccoons and post it in the server.",
+            "Paint a large mural or graffiti of a cyberpunk raccoon in your city and share it online.",
+            "Create and distribute stickers of cyberpunk raccoons in public spaces and document it.",
+            "Host a raccoon-themed charity bake sale and donate the proceeds in the project's name.",
+            "Design a raccoon-inspired costume and wear it to a local event or parade.",
+            "Organize a flash mob wearing raccoon masks in a busy public area and promote the NFT.",
+            "Set up a booth at a local market to showcase the NFT project and educate people about it.",
+            "Collaborate with local artists to create a cyberpunk raccoon art exhibition.",
+            "Build a cyberpunk raccoon sculpture from recycled materials and display it publicly.",
+            "Run a scavenger hunt in your city with clues leading to information about the project.",
+            "Distribute flyers or posters with QR codes leading to the project's website.",
+            "Create a short film or documentary featuring raccoon enthusiasts and the NFT project.",
+            "Organize a community clean-up event under the banner of the raccoon project.",
+            "Design a temporary tattoo featuring a cyberpunk raccoon and distribute it to friends.",
+            "Host a raccoon-themed photo contest in your local community.",
+            "Compose a song or jingle about the raccoon NFT and perform it publicly.",
+            "Create a cyberpunk raccoon pop-up stand in a high-traffic area for awareness.",
+            "Teach a local workshop on digital art, using the raccoon theme as inspiration.",
+            "Run a live painting session in a park, creating raccoon-themed art in real-time.",
+            "Plan a local meetup for NFT and raccoon enthusiasts to discuss the project.",
+            "Collaborate with a local coffee shop to create a raccoon-themed drink for a day."
+        ];
+
+        const raccoonFacts = {
+            diet: "Raccoons are omnivores and enjoy fruits, nuts, insects, and even small animals. They are also known for scavenging human leftovers.",
+            habitat: "Raccoons are most commonly found in North America, particularly in wooded areas near water sources, but they are highly adaptable and can thrive in urban environments.",
+            lifespan: "In the wild, raccoons typically live 2-5 years due to predators and harsh conditions, but in captivity, they can live up to 20 years.",
+            activities: "Raccoons are nocturnal and enjoy climbing, foraging for food, and exploring their surroundings. They are also known for their dexterous front paws, which they use to manipulate objects."
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const messages = document.getElementById('messages');
+
+            if (userInput.value.trim() === '') return;
+
+            // Display user's message
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.textContent = userInput.value;
+            messages.appendChild(userMessage);
+
+            // Bot response logic
+            let botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot');
+
+            if (/\b(wl|whitelist)\b/i.test(userInput.value)) {
+                botMessage.textContent = "Here's an idea to get on the whitelist: " + ideas[Math.floor(Math.random() * ideas.length)];
+            } else if (/\b(another|more|else)\b/i.test(userInput.value)) {
+                botMessage.textContent = "Here's another idea: " + ideas[Math.floor(Math.random() * ideas.length)];
+            } else if (/\b(already|done|same|better)\b/i.test(userInput.value)) {
+                botMessage.textContent = "Got it! Let me give you a more unique suggestion: " + ideas[Math.floor(Math.random() * ideas.length)];
+            } else if (/\b(diet)\b/i.test(userInput.value)) {
+                botMessage.textContent = raccoonFacts.diet;
+            } else if (/\b(habitat)\b/i.test(userInput.value)) {
+                botMessage.textContent = raccoonFacts.habitat;
+            } else if (/\b(lifespan)\b/i.test(userInput.value)) {
+                botMessage.textContent = raccoonFacts.lifespan;
+            } else if (/\b(activities|activity)\b/i.test(userInput.value)) {
+                botMessage.textContent = raccoonFacts.activities;
+            } else if (/\b(raccoon|facts|about)\b/i.test(userInput.value)) {
+                botMessage.textContent = "Here are some cool raccoon facts: \n- Diet: " + raccoonFacts.diet + "\n- Habitat: " + raccoonFacts.habitat + "\n- Lifespan: " + raccoonFacts.lifespan + "\n- Favorite Activities: " + raccoonFacts.activities;
+            } else {
+                botMessage.textContent = "I'm here to help! Ask me about getting on the whitelist or anything about raccoons!";
+            }
+
+            messages.appendChild(botMessage);
+
+            // Clear input
+            userInput.value = '';
+
+            // Scroll to bottom
+            messages.scrollTop = messages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
